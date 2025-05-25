@@ -12,7 +12,8 @@
   2. Run `createdb -U {your_postgres_username} {fantasysnl}`.
   3. In the `server/.env` file, set `DATABASE_URL` with this format: `postgresql://{your_postgres_username}:{your_postgres_password}@localhost:5432/fantasysnl`.
 3. Generate a JWT token. You can do so by running `openssl rand -base64 32` from the command line.
-4. Get the server running. 
+  1. In the `server/.env` file, set `JWT_SECRET` with your generated token.
+5. Get the server running. 
   1. From the `server` directory, run `npm install` to set up all package dependencies.
   2. Next, run `npm run dev`. This step will generate any schema migrations and start the server.
   3. You should see `Server running on port 1975` in your terminal (unless you specify a different PORT in `.env`)
