@@ -1,0 +1,69 @@
+/* Container */
+.navbar {
+  display: flex;
+  justify-content: space-between; /* logo on left, links in middle, auth on right */
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background-color: #222;
+}
+
+/* Logo / Brand */
+.navbar-logo h2 {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  padding-right: 2rem; 
+}
+
+/* Main nav links */
+.navbar-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  margin-right: 1.25rem;
+}
+
+.nav-link {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.nav-link:hover {
+  color: #fff;
+}
+
+.nav-link.active {
+  color: #fff;
+  border-bottom: 2px solid #ffdd57;
+}
+
+/* Auth section (Login/Register or Logout) */
+.navbar-auth {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-auth .nav-link {
+  margin-left: 1rem;
+}
+
+/* Logout button styled like a link */
+.button-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.button-link:hover {
+  color: #fff;
+}
