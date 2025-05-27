@@ -5,7 +5,7 @@ import './Navbar.css';
 
 const navItems = [
   { name: 'Home',			to: '/' },
-  { name: 'Leaderboard',   to: '/leaderboard' },
+  { name: 'Leaderboard',   to: '/leaderboard' }, // This is a placeholder, adjust as needed
 ];
 
 export default function Navbar() {

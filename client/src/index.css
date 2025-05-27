@@ -22,12 +22,20 @@ a:hover {
   color: #535bf2;
 }
 
+/* Make body normal flow so children can span the full width */
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: inherit;
+  color: inherit;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
 }
 
 h1 {

@@ -1,25 +1,29 @@
 import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 export default function Register() {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
-  const navigate = useNavigate();
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const { register } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
+    setLoading(true);
     try {
-      const res = await axios.post('http://localhost:1975/api/auth/register', form);
-      localStorage.setItem('token', res.data.token);
-      navigate('/');
+      await register(form.name, form.email, form.password); // register() handles token, profile fetch & redirect
     } catch (err) {
-      alert(err.response?.data?.message || 'Registration failed');
+      setError(err.response?.data?.message || 'Registration failed');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="register-form">
       <h2>Register</h2>
+      {error && <p className="error">{error}</p>}
       <input placeholder="Name" onChange={(e) => setForm({ ...form, name: e.target.value })} />
       <input placeholder="Email" onChange={(e) => setForm({ ...form, email: e.target.value })} />
       <input type="password" placeholder="Password" onChange={(e) => setForm({ ...form, password: e.target.value })} />
