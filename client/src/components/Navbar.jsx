@@ -12,11 +12,6 @@ export default function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  }
-  
   return (
     <nav className="navbar">
       <div className="navbar-logo">
@@ -40,7 +35,7 @@ export default function Navbar() {
 
       <div className="navbar-auth">
         {user ? (
-          <button onClick={handleLogout} className="nav-link button-link">
+          <button onClick={logout} className="nav-link button-link">
             Logout
           </button>
         ) : (
