@@ -12,7 +12,6 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-/* 2) Logo styling */
 .navbar-logo h2 {
   color: #fff;
   margin: 0;
@@ -20,7 +19,6 @@
   font-weight: bold;
 }
 
-/* 3) Main nav links */
 .navbar-links {
   display: flex;
   list-style: none;
@@ -39,10 +37,9 @@
 .nav-link:hover,
 .nav-link.active {
   color: #fff;
-  border-bottom: 2px solid #ffdd57;  /* highlight active */
+  border-bottom: 2px solid #ffdd57;
 }
 
-/* 4) Auth section */
 .navbar-auth {
   display: flex;
   align-items: center;
