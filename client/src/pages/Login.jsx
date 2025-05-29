@@ -1,28 +1,51 @@
 import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 export default function Login() {
-  const [form, setForm] = useState({ email: '', password: '' });
-  const navigate = useNavigate();
+  const { login }        = useAuth();
+  const [form, setForm]  = useState({ email: '', password: '' });
+  const [error, setError]= useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
+    setLoading(true);
     try {
-      const res = await axios.post('http://localhost:1975/api/auth/login', form);
-      localStorage.setItem('token', res.data.token);
-      navigate('/');
+      await login(form.email, form.password);
+      // login() will store token, fetch profile, and navigate for you
     } catch (err) {
-      alert(err.response?.data?.message || 'Login failed');
+      setError(err.response?.data?.message || 'Login failed');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="login-form">
       <h2>Login</h2>
-      <input placeholder="Email" onChange={(e) => setForm({ ...form, email: e.target.value })} />
-      <input type="password" placeholder="Password" onChange={(e) => setForm({ ...form, password: e.target.value })} />
-      <button type="submit">Login</button>
+      {error && <p className="error">{error}</p>}
+      <label>
+        Email
+        <input
+          type="email"
+          value={form.email}
+          onChange={e => setForm({...form, email: e.target.value})}
+          required
+        />
+      </label>
+      <label>
+        Password
+        <input
+          type="password"
+          value={form.password}
+          onChange={e => setForm({...form, password: e.target.value})}
+          required
+        />
+      </label>
+      <button type="submit" disabled={loading}>
+        {loading ? 'Logging in…' : 'Login'}
+      </button>
     </form>
   );
 }

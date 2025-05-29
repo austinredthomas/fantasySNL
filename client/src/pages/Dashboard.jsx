@@ -1,20 +1,10 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { useAuth } from '../context/AuthContext';
 
 export default function Dashboard() {
-  const [user, setUser] = useState(null);
+  const { user, loading } = useAuth();
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) return;
-
-    axios
-      .get('http://localhost:1975/api/auth/me', {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((res) => setUser(res.data))
-      .catch(() => setUser(null));
-  }, []);
+  if (loading) return <p>Loading…</p>;
 
   if (!user) return <p>Please login.</p>;
 

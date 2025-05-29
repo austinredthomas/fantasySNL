@@ -8,7 +8,7 @@
 2. Set up a postgres database locally
   1. Install postgres if you haven't already. 
     1. On a Mac running homebrew, run `brew install postgresql` and then `brew services start postgresql`
-    2. TODO: add other OS
+    2. On Windows, use [Chocolatey](https://chocolatey.org/) to install Postgres `choco install postgresql`
   2. Run `createdb -U {your_postgres_username} {fantasysnl}`.
   3. In the `server/.env` file, set `DATABASE_URL` with this format: `postgresql://{your_postgres_username}:{your_postgres_password}@localhost:5432/fantasysnl`.
 3. Generate a JWT token. You can do so by running `openssl rand -base64 32` from the command line.
